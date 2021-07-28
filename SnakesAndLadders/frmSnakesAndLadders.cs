@@ -12,9 +12,31 @@ namespace SnakesAndLadders
 {
 	public partial class frmSnakesAndLadders : Form
 	{
-		public frmSnakesAndLadders()
+
+		public frmSnakesAndLadders(List<Player> players)
 		{
 			InitializeComponent();
+
+			Players = players;
+
+			DetermineOrder();
+
+			StartGame();
 		}
+
+		public List<Player> Players {get; private set; }
+
+		private void DetermineOrder()
+		{
+
+		}
+
+		private void StartGame()
+		{
+	
+
+
+		}
+
 	}
 }

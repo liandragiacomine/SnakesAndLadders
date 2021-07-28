@@ -14,7 +14,6 @@ C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Deb
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\ref\SnakesAndLadders.dll
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.pdb
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.genruntimeconfig.cache
-C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.csprojAssemblyReference.cache
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.frmSetPlayers.resources
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.frmSnakesAndLadders.resources
 C:\Users\li.giacomine\source\repos\SnakesAndLadders\SnakesAndLadders\obj\x86\Debug\net5.0-windows\SnakesAndLadders.Properties.Resources.resources
