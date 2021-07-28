@@ -30,35 +30,36 @@ namespace SnakesAndLadders
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSnakesAndLadders));
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.boardImage = new System.Windows.Forms.PictureBox();
+			this.btnRoll = new System.Windows.Forms.Button();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lblTip = new System.Windows.Forms.Label();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.boardImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(28, 44);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(600, 600);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
+			this.boardImage.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.boardImage.Location = new System.Drawing.Point(28, 44);
+			this.boardImage.Name = "pictureBox1";
+			this.boardImage.Size = new System.Drawing.Size(600, 600);
+			this.boardImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.boardImage.TabIndex = 0;
+			this.boardImage.TabStop = false;
 			// 
 			// button1
 			// 
-			this.button1.BackColor = System.Drawing.Color.Yellow;
-			this.button1.Location = new System.Drawing.Point(666, 361);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(143, 52);
-			this.button1.TabIndex = 1;
-			this.button1.Text = "Roll";
-			this.button1.UseVisualStyleBackColor = false;
+			this.btnRoll.BackColor = System.Drawing.Color.Yellow;
+			this.btnRoll.Location = new System.Drawing.Point(666, 361);
+			this.btnRoll.Name = "btnRoll";
+			this.btnRoll.Size = new System.Drawing.Size(143, 52);
+			this.btnRoll.TabIndex = 1;
+			this.btnRoll.Text = "Roll";
+			this.btnRoll.UseVisualStyleBackColor = false;
+			this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
 			// 
 			// pictureBox2
 			// 
@@ -72,12 +73,12 @@ namespace SnakesAndLadders
 			// 
 			// label1
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(678, 68);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(108, 25);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Player\'s turn";
+			this.lblTip.AutoSize = true;
+			this.lblTip.Location = new System.Drawing.Point(678, 68);
+			this.lblTip.Name = "label1";
+			this.lblTip.Size = new System.Drawing.Size(108, 25);
+			this.lblTip.TabIndex = 3;
+			this.lblTip.Text = "Player\'s turn";
 			// 
 			// pictureBox3
 			// 
@@ -94,14 +95,14 @@ namespace SnakesAndLadders
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(856, 680);
 			this.Controls.Add(this.pictureBox3);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lblTip);
 			this.Controls.Add(this.pictureBox2);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.btnRoll);
+			this.Controls.Add(this.boardImage);
 			this.Name = "frmSnakesAndLadders";
 			this.ShowIcon = false;
 			this.Text = "Snakes And Ladders";
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.boardImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.ResumeLayout(false);
@@ -112,10 +113,10 @@ namespace SnakesAndLadders
 		#endregion
 
 		private System.Windows.Forms.RichTextBox rtbBoard;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.PictureBox boardImage;
+		private System.Windows.Forms.Button btnRoll;
 		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblTip;
 		private System.Windows.Forms.PictureBox pictureBox3;
 	}
 }

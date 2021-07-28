@@ -19,5 +19,15 @@ namespace SnakesAndLadders
 		{
 			return PlayerID;
 		}
+
+		public void Move(int rollVal)
+		{
+			//move player to the position on the board according to their roll
+			//check if they landed on a snake or ladder and adjust position if so
+			//check if they have won the game
+
+
+		}
+
 	}
 }

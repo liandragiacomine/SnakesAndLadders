@@ -25,7 +25,9 @@ namespace SnakesAndLadders
 			{
 				List<Player> players = GetPlayers();
 
-				frmSnakesAndLadders frm = new frmSnakesAndLadders(players);
+				Die die = new Die();
+
+				frmSnakesAndLadders frm = new frmSnakesAndLadders(players, die);
 
 				frm.Show();
 			}
