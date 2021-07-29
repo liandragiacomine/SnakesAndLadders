@@ -9,13 +9,17 @@ namespace SnakesAndLadders
 	public class Tile
 	{
 
-		public Tile()
+		public Tile(int tileNumber)
 		{
+			TileNumber = tileNumber;
 		}
 
-		public int X { get; private set; }
+		public int X { get; set; }
 
-		public int Y { get; private set; }
+		public int Y { get; set; }
+
+		public int TileNumber { get; private set; }
+
 
 	}
 }

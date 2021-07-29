@@ -34,28 +34,36 @@ namespace SnakesAndLadders
 			this.btnRoll = new System.Windows.Forms.Button();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.lblTip = new System.Windows.Forms.Label();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.player1 = new System.Windows.Forms.PictureBox();
+			this.player2 = new System.Windows.Forms.PictureBox();
+			this.player3 = new System.Windows.Forms.PictureBox();
+			this.player4 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.boardImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.player1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.player2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.player3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.player4)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// pictureBox1
+			// boardImage
 			// 
-			this.boardImage.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.boardImage.Location = new System.Drawing.Point(28, 44);
-			this.boardImage.Name = "pictureBox1";
-			this.boardImage.Size = new System.Drawing.Size(600, 600);
+			this.boardImage.Image = ((System.Drawing.Image)(resources.GetObject("boardImage.Image")));
+			this.boardImage.Location = new System.Drawing.Point(20, 26);
+			this.boardImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.boardImage.Name = "boardImage";
+			this.boardImage.Size = new System.Drawing.Size(420, 360);
 			this.boardImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.boardImage.TabIndex = 0;
 			this.boardImage.TabStop = false;
 			// 
-			// button1
+			// btnRoll
 			// 
 			this.btnRoll.BackColor = System.Drawing.Color.Yellow;
-			this.btnRoll.Location = new System.Drawing.Point(666, 361);
+			this.btnRoll.Location = new System.Drawing.Point(466, 217);
+			this.btnRoll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.btnRoll.Name = "btnRoll";
-			this.btnRoll.Size = new System.Drawing.Size(143, 52);
+			this.btnRoll.Size = new System.Drawing.Size(100, 31);
 			this.btnRoll.TabIndex = 1;
 			this.btnRoll.Text = "Roll";
 			this.btnRoll.UseVisualStyleBackColor = false;
@@ -64,47 +72,87 @@ namespace SnakesAndLadders
 			// pictureBox2
 			// 
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(666, 221);
+			this.pictureBox2.Location = new System.Drawing.Point(466, 133);
+			this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(143, 115);
+			this.pictureBox2.Size = new System.Drawing.Size(100, 69);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 2;
 			this.pictureBox2.TabStop = false;
 			// 
-			// label1
+			// lblTip
 			// 
 			this.lblTip.AutoSize = true;
-			this.lblTip.Location = new System.Drawing.Point(678, 68);
-			this.lblTip.Name = "label1";
-			this.lblTip.Size = new System.Drawing.Size(108, 25);
+			this.lblTip.Location = new System.Drawing.Point(475, 41);
+			this.lblTip.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblTip.Name = "lblTip";
+			this.lblTip.Size = new System.Drawing.Size(72, 15);
 			this.lblTip.TabIndex = 3;
 			this.lblTip.Text = "Player\'s turn";
 			// 
+			// plater
+			// 
+			this.player1.BackColor = System.Drawing.Color.Red;
+			this.player1.Location = new System.Drawing.Point(24, 356);
+			this.player1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.player1.Name = "plater";
+			this.player1.Size = new System.Drawing.Size(15, 13);
+			this.player1.TabIndex = 4;
+			this.player1.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.player2.BackColor = System.Drawing.Color.Blue;
+			this.player2.Location = new System.Drawing.Point(43, 356);
+			this.player2.Margin = new System.Windows.Forms.Padding(2);
+			this.player2.Name = "pictureBox1";
+			this.player2.Size = new System.Drawing.Size(15, 13);
+			this.player2.TabIndex = 5;
+			this.player2.TabStop = false;
+			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.BackColor = System.Drawing.Color.Red;
-			this.pictureBox3.Location = new System.Drawing.Point(38, 590);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(22, 22);
-			this.pictureBox3.TabIndex = 4;
-			this.pictureBox3.TabStop = false;
+			this.player3.BackColor = System.Drawing.Color.Yellow;
+			this.player3.Location = new System.Drawing.Point(24, 373);
+			this.player3.Margin = new System.Windows.Forms.Padding(2);
+			this.player3.Name = "pictureBox3";
+			this.player3.Size = new System.Drawing.Size(15, 13);
+			this.player3.TabIndex = 6;
+			this.player3.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.player4.BackColor = System.Drawing.Color.Green;
+			this.player4.Location = new System.Drawing.Point(43, 373);
+			this.player4.Margin = new System.Windows.Forms.Padding(2);
+			this.player4.Name = "pictureBox4";
+			this.player4.Size = new System.Drawing.Size(15, 13);
+			this.player4.TabIndex = 7;
+			this.player4.TabStop = false;
 			// 
 			// frmSnakesAndLadders
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(856, 680);
-			this.Controls.Add(this.pictureBox3);
+			this.ClientSize = new System.Drawing.Size(599, 408);
+			this.Controls.Add(this.player4);
+			this.Controls.Add(this.player3);
+			this.Controls.Add(this.player2);
+			this.Controls.Add(this.player1);
 			this.Controls.Add(this.lblTip);
 			this.Controls.Add(this.pictureBox2);
 			this.Controls.Add(this.btnRoll);
 			this.Controls.Add(this.boardImage);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "frmSnakesAndLadders";
 			this.ShowIcon = false;
 			this.Text = "Snakes And Ladders";
 			((System.ComponentModel.ISupportInitialize)(this.boardImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.player1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.player2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.player3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.player4)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -117,6 +165,9 @@ namespace SnakesAndLadders
 		private System.Windows.Forms.Button btnRoll;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.Label lblTip;
-		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.PictureBox player1;
+		private System.Windows.Forms.PictureBox player2;
+		private System.Windows.Forms.PictureBox player3;
+		private System.Windows.Forms.PictureBox player4;
 	}
 }

@@ -64,7 +64,7 @@ namespace SnakesAndLadders
 				throw new ArgumentOutOfRangeException("Player ID cannot be null");
 			}
 
-			if(lbxPlayers.Items.Count > 6)
+			if(lbxPlayers.Items.Count > 4)
 			{
 				throw new ArgumentOutOfRangeException("Maximum of 6 players allowed");
 			}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SnakesAndLadders
 {
@@ -15,18 +16,13 @@ namespace SnakesAndLadders
 
 		public string PlayerID { get; private set; }
 
+		public Tile PlayerTile { get; set; }
+
+		public PictureBox PlayerPawn { get; set; }
+
 		public override string ToString()
 		{
 			return PlayerID;
-		}
-
-		public void Move(int rollVal)
-		{
-			//move player to the position on the board according to their roll
-			//check if they landed on a snake or ladder and adjust position if so
-			//check if they have won the game
-
-
 		}
 
 	}
