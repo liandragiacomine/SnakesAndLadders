@@ -46,8 +46,6 @@ namespace SnakesAndLadders
 
 			initBoardTasks.Add(Task.Factory.StartNew(() => CreateBoard()));
 
-			initBoardTasks.Add(Task.Factory.StartNew(() => InitializePlayerPosition()));
-
 			initBoardTasks.Add(Task.Factory.StartNew(() => SetDieImages()));
 
 			Task.WaitAll(initBoardTasks.ToArray());
@@ -57,6 +55,8 @@ namespace SnakesAndLadders
 
 		private void StartGame()
 		{
+			InitializePlayerPosition();
+
 			Dictionary<Player, int> playerDieRoll = RollDieForAllPlayers();
 
 			while(!ContainsDifferentValues(playerDieRoll))
@@ -143,15 +143,19 @@ namespace SnakesAndLadders
 				{
 					case 1:
 						p.PlayerPawn = player1;
+						player1.Visible = true;
 						break;
 					case 2:
 						p.PlayerPawn = player2;
+						player2.Visible = true;
 						break;
 					case 3:
 						p.PlayerPawn = player3;
+						player3.Visible = true;
 						break;
 					case 4:
 						p.PlayerPawn = player4;
+						player4.Visible = true;
 						break;
 
 					default:
@@ -171,7 +175,7 @@ namespace SnakesAndLadders
 			int tileNumber = 1;
 
 			int row = 10;
-			while (tileNumber <= 100)
+			while(tileNumber <= 100)
 			{
 
 				SetForwardBoardPositions(ref tileNumber, row, tileWidth, tileHeight, boardImage.Location.X, boardImage.Location.Y);
@@ -186,6 +190,45 @@ namespace SnakesAndLadders
 			SetSnakeTiles();
 
 			SetLadderTiles();
+		}
+
+		private void SetForwardBoardPositions(ref int tileNumber, int row, int width, int tileHeight, int boardX, int boardY)
+		{
+			int y = GetHeight(row, tileHeight);
+
+			for(int x = 0; x <= 9; x++)
+			{
+				Tile tile = new Tile(tileNumber);
+
+				tile.X = boardX + (width * x);
+				tile.Y = y;
+
+				tileNumber++;
+
+				BoardTiles.Add(tile);
+			}
+		}
+
+		private void SetBackwardBoardPositions(ref int tileNumber, int row, int width, int tileHeight, int boardX, int boardY)
+		{
+			int y = GetHeight(row, tileHeight);
+
+			for (int x = 9; x >= 0; x--)
+			{
+				Tile tile = new Tile(tileNumber);
+
+				tile.X = boardX + (width * x);
+				tile.Y = y;
+
+				tileNumber++;
+
+				BoardTiles.Add(tile);
+			}
+		}
+
+		private int GetHeight(int row, int tileHeight)
+		{
+			return row * tileHeight;
 		}
 
 		private void SetSnakeTiles()
@@ -213,46 +256,6 @@ namespace SnakesAndLadders
 			LadderStartEndTile.TryAdd(62, 81);
 			LadderStartEndTile.TryAdd(74, 92);
 		}
-
-		private void SetForwardBoardPositions(ref int tileNumber, int row, int width, int tileHeight, int boardX, int boardY)
-		{
-			int y = GetHeight(row, tileHeight, boardY);
-
-			for (int x = 0; x < 10; x++)
-			{
-				Tile tile = new Tile(tileNumber);
-
-				tile.X = boardX + (width * x);
-				tile.Y = y;
-
-				tileNumber++;
-
-				BoardTiles.Add(tile);
-			}
-		}
-
-		private void SetBackwardBoardPositions(ref int tileNumber, int row, int width, int tileHeight, int boardX, int boardY)
-		{
-			int y = GetHeight(row, tileHeight, boardY);
-
-			for (int x = 9; x > 0; x--)
-			{
-				Tile tile = new Tile(tileNumber);
-
-				tile.X = boardX + (width * x);
-				tile.Y = y;
-
-				tileNumber++;
-
-				BoardTiles.Add(tile);
-			}
-		}
-
-		private int GetHeight(int row, int tileHeight, int boardY)
-		{
-			return (row * tileHeight);
-		}
-
 
 		#endregion
 

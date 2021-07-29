@@ -50,7 +50,7 @@ namespace SnakesAndLadders
 			// 
 			this.boardImage.Image = ((System.Drawing.Image)(resources.GetObject("boardImage.Image")));
 			this.boardImage.Location = new System.Drawing.Point(20, 26);
-			this.boardImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.boardImage.Margin = new System.Windows.Forms.Padding(2);
 			this.boardImage.Name = "boardImage";
 			this.boardImage.Size = new System.Drawing.Size(420, 360);
 			this.boardImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -61,7 +61,7 @@ namespace SnakesAndLadders
 			// 
 			this.btnRoll.BackColor = System.Drawing.Color.Yellow;
 			this.btnRoll.Location = new System.Drawing.Point(466, 217);
-			this.btnRoll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnRoll.Margin = new System.Windows.Forms.Padding(2);
 			this.btnRoll.Name = "btnRoll";
 			this.btnRoll.Size = new System.Drawing.Size(100, 31);
 			this.btnRoll.TabIndex = 1;
@@ -73,7 +73,7 @@ namespace SnakesAndLadders
 			// 
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
 			this.pictureBox2.Location = new System.Drawing.Point(466, 133);
-			this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(100, 69);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -90,45 +90,49 @@ namespace SnakesAndLadders
 			this.lblTip.TabIndex = 3;
 			this.lblTip.Text = "Player\'s turn";
 			// 
-			// plater
+			// player1
 			// 
 			this.player1.BackColor = System.Drawing.Color.Red;
 			this.player1.Location = new System.Drawing.Point(24, 356);
-			this.player1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.player1.Name = "plater";
+			this.player1.Margin = new System.Windows.Forms.Padding(2);
+			this.player1.Name = "player1";
 			this.player1.Size = new System.Drawing.Size(15, 13);
 			this.player1.TabIndex = 4;
 			this.player1.TabStop = false;
+			this.player1.Visible = false;
 			// 
-			// pictureBox1
+			// player2
 			// 
 			this.player2.BackColor = System.Drawing.Color.Blue;
-			this.player2.Location = new System.Drawing.Point(43, 356);
+			this.player2.Location = new System.Drawing.Point(34, 356);
 			this.player2.Margin = new System.Windows.Forms.Padding(2);
-			this.player2.Name = "pictureBox1";
+			this.player2.Name = "player2";
 			this.player2.Size = new System.Drawing.Size(15, 13);
 			this.player2.TabIndex = 5;
 			this.player2.TabStop = false;
+			this.player2.Visible = false;
 			// 
-			// pictureBox3
+			// player3
 			// 
 			this.player3.BackColor = System.Drawing.Color.Yellow;
-			this.player3.Location = new System.Drawing.Point(24, 373);
+			this.player3.Location = new System.Drawing.Point(24, 356);
 			this.player3.Margin = new System.Windows.Forms.Padding(2);
-			this.player3.Name = "pictureBox3";
+			this.player3.Name = "player3";
 			this.player3.Size = new System.Drawing.Size(15, 13);
 			this.player3.TabIndex = 6;
 			this.player3.TabStop = false;
+			this.player3.Visible = false;
 			// 
-			// pictureBox4
+			// player4
 			// 
 			this.player4.BackColor = System.Drawing.Color.Green;
-			this.player4.Location = new System.Drawing.Point(43, 373);
+			this.player4.Location = new System.Drawing.Point(34, 356);
 			this.player4.Margin = new System.Windows.Forms.Padding(2);
-			this.player4.Name = "pictureBox4";
+			this.player4.Name = "player4";
 			this.player4.Size = new System.Drawing.Size(15, 13);
 			this.player4.TabIndex = 7;
 			this.player4.TabStop = false;
+			this.player4.Visible = false;
 			// 
 			// frmSnakesAndLadders
 			// 
@@ -143,7 +147,7 @@ namespace SnakesAndLadders
 			this.Controls.Add(this.pictureBox2);
 			this.Controls.Add(this.btnRoll);
 			this.Controls.Add(this.boardImage);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "frmSnakesAndLadders";
 			this.ShowIcon = false;
 			this.Text = "Snakes And Ladders";
