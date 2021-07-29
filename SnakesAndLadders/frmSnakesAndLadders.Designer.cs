@@ -104,7 +104,7 @@ namespace SnakesAndLadders
 			// player2
 			// 
 			this.player2.BackColor = System.Drawing.Color.Blue;
-			this.player2.Location = new System.Drawing.Point(34, 356);
+			this.player2.Location = new System.Drawing.Point(43, 356);
 			this.player2.Margin = new System.Windows.Forms.Padding(2);
 			this.player2.Name = "player2";
 			this.player2.Size = new System.Drawing.Size(15, 13);
@@ -114,8 +114,8 @@ namespace SnakesAndLadders
 			// 
 			// player3
 			// 
-			this.player3.BackColor = System.Drawing.Color.Yellow;
-			this.player3.Location = new System.Drawing.Point(24, 356);
+			this.player3.BackColor = System.Drawing.Color.Black;
+			this.player3.Location = new System.Drawing.Point(24, 373);
 			this.player3.Margin = new System.Windows.Forms.Padding(2);
 			this.player3.Name = "player3";
 			this.player3.Size = new System.Drawing.Size(15, 13);
@@ -126,7 +126,7 @@ namespace SnakesAndLadders
 			// player4
 			// 
 			this.player4.BackColor = System.Drawing.Color.Green;
-			this.player4.Location = new System.Drawing.Point(34, 356);
+			this.player4.Location = new System.Drawing.Point(43, 373);
 			this.player4.Margin = new System.Windows.Forms.Padding(2);
 			this.player4.Name = "player4";
 			this.player4.Size = new System.Drawing.Size(15, 13);

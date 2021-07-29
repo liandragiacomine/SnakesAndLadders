@@ -59,7 +59,7 @@ namespace SnakesAndLadders
 
 			Dictionary<Player, int> playerDieRoll = RollDieForAllPlayers();
 
-			while(!ContainsDifferentValues(playerDieRoll))
+			while(playerDieRoll.Count > 1 && !ContainsDifferentValues(playerDieRoll))
 			{
 				playerDieRoll = RollDieForAllPlayers();
 			}
@@ -340,6 +340,9 @@ namespace SnakesAndLadders
 			int curTileNumber = player.PlayerTile.TileNumber;
 			curTileNumber += rollVal;
 
+			if(curTileNumber > 100)
+				return;
+
 			SetPlayerNewBoardPosition(player, curTileNumber);
 
 			CheckForSnakeOrLadder(player);
@@ -349,9 +352,6 @@ namespace SnakesAndLadders
 
 		private void SetPlayerNewBoardPosition(Player player, int newTileNumber)
 		{
-			if(newTileNumber > 100)
-				return;
-
 			Tile newPlayerTile = BoardTiles.First(x => x.TileNumber == newTileNumber);
 
 			player.PlayerTile = newPlayerTile;
