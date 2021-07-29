@@ -14,6 +14,9 @@ namespace SnakesAndLadders
 {
 	public partial class frmSnakesAndLadders : Form
 	{
+		private ConcurrentDictionary<int, int> SnakeStartEndTile;
+		private ConcurrentDictionary<int, int> LadderStartEndTile;
+
 		private Die Die;
 
 		private List<Player> Players;
@@ -29,17 +32,25 @@ namespace SnakesAndLadders
 
 			DieImages = new ConcurrentDictionary<int, Image>();
 
+			SnakeStartEndTile = new ConcurrentDictionary<int, int>();
+			
+			LadderStartEndTile = new ConcurrentDictionary<int, int>();
+
 			BoardTiles = new ConcurrentBag<Tile>();
 
 			Players = players;
 
 			Die = die;
 
-			CreateBoard();
+			List<Task> initBoardTasks = new List<Task>();
 
-			InitializePlayerPosition();
+			initBoardTasks.Add(Task.Factory.StartNew(() => CreateBoard()));
 
-			SetDieImages();
+			initBoardTasks.Add(Task.Factory.StartNew(() => InitializePlayerPosition()));
+
+			initBoardTasks.Add(Task.Factory.StartNew(() => SetDieImages()));
+
+			Task.WaitAll(initBoardTasks.ToArray());
 
 			StartGame();
 		}
@@ -63,36 +74,22 @@ namespace SnakesAndLadders
 			DisplayOrder(rollValues);
 		}
 
-		private Dictionary<Player, int> RollDieForAllPlayers()
-		{
-			Dictionary<Player, int> playerDieRoll = new Dictionary<Player, int>();
-
-			foreach(Player p in Players)
-			{
-				int val = Die.RollDie();
-
-				playerDieRoll.Add(p, val);
-			}
-
-			return playerDieRoll;
-		}
-
 		private bool ContainsDifferentValues(Dictionary<Player, int> playerDieRoll)
 		{
 			//ensure we have different values to determine who begins
 
 			bool first = true;
 			int rollVal = 0;
-			foreach(int val in playerDieRoll.Values)
+			foreach (int val in playerDieRoll.Values)
 			{
-				if(first)
+				if (first)
 				{
 					rollVal = val;
 					first = false;
 					continue;
 				}
 
-				if(rollVal != val)
+				if (rollVal != val)
 				{
 					return true;
 				}
@@ -101,47 +98,7 @@ namespace SnakesAndLadders
 			return false;
 		}
 
-		private void DisplayOrder(IOrderedEnumerable<KeyValuePair<Player, int>> rollValues)
-		{
-			StringBuilder sb = new StringBuilder();
-
-			Player firstPlayer = null;
-			foreach(KeyValuePair<Player, int> keyValue in rollValues)
-			{
-				if(firstPlayer == null)
-				{
-					firstPlayer = keyValue.Key;
-				}
-
-				sb.Append("Player: ");
-				sb.Append(keyValue.Key);
-				sb.Append(", Roll: ");
-				sb.Append(keyValue.Value);
-				sb.Append("\n");
-			}
-
-			sb.Append("\n");
-			sb.Append("\n");
-			IndicatePlayerToRoll(sb, firstPlayer);
-
-			lblTip.Text = sb.ToString();
-		}
-
-		private void IndicatePlayerToRoll(StringBuilder sb, Player player)
-		{
-			sb.Append(player);
-			sb.Append(" please roll!");
-		}
-
-		private int Roll()
-		{
-			int rollVal = Die.RollDie();
-
-			ModifyPictureBoxImage(rollVal);
-
-			return rollVal;
-		}
-
+		#region Set Up Board
 
 		private void SetDieImages()
 		{
@@ -174,15 +131,15 @@ namespace SnakesAndLadders
 		private void InitializePlayerPosition()
 		{
 			//this would be better implemented by creating the pawns dynamically and not having a restriction on players allowed
-			
+
 			Tile firstTile = BoardTiles.First(x => x.TileNumber == 1);
 
 			int count = 1;
-			foreach(Player p in Players)
+			foreach (Player p in Players)
 			{
 				p.PlayerTile = firstTile;
 
-				switch(count)
+				switch (count)
 				{
 					case 1:
 						p.PlayerPawn = player1;
@@ -214,7 +171,7 @@ namespace SnakesAndLadders
 			int tileNumber = 1;
 
 			int row = 10;
-			while(tileNumber <= 100)
+			while (tileNumber <= 100)
 			{
 
 				SetForwardBoardPositions(ref tileNumber, row, tileWidth, tileHeight, boardImage.Location.X, boardImage.Location.Y);
@@ -225,14 +182,43 @@ namespace SnakesAndLadders
 
 				row--;
 			}
+
+			SetSnakeTiles();
+
+			SetLadderTiles();
 		}
 
+		private void SetSnakeTiles()
+		{
+			//it would be better if I had created each seperate tile image as a class rather than hard coding this, where we had booleans indicating which tiles have snakes and where they end etc.
+
+			SnakeStartEndTile.TryAdd(27, 5);
+			SnakeStartEndTile.TryAdd(40, 3);
+			SnakeStartEndTile.TryAdd(43, 18);
+			SnakeStartEndTile.TryAdd(54, 31);
+			SnakeStartEndTile.TryAdd(66, 45);
+			SnakeStartEndTile.TryAdd(76, 58);
+			SnakeStartEndTile.TryAdd(89, 53);
+			SnakeStartEndTile.TryAdd(99, 41);
+		}
+
+		private void SetLadderTiles()
+		{
+			//it would be better if I had created each seperate tile image as a class rather than hard coding this, where we had booleans indicating which tiles have ladders and where they end etc.
+
+			LadderStartEndTile.TryAdd(4, 25);
+			LadderStartEndTile.TryAdd(13, 46);
+			LadderStartEndTile.TryAdd(50, 69);
+			LadderStartEndTile.TryAdd(42, 63);
+			LadderStartEndTile.TryAdd(62, 81);
+			LadderStartEndTile.TryAdd(74, 92);
+		}
 
 		private void SetForwardBoardPositions(ref int tileNumber, int row, int width, int tileHeight, int boardX, int boardY)
 		{
 			int y = GetHeight(row, tileHeight, boardY);
 
-			for(int x = 0; x < 10; x++)
+			for (int x = 0; x < 10; x++)
 			{
 				Tile tile = new Tile(tileNumber);
 
@@ -249,7 +235,7 @@ namespace SnakesAndLadders
 		{
 			int y = GetHeight(row, tileHeight, boardY);
 
-			for(int x = 9; x > 0; x--)
+			for (int x = 9; x > 0; x--)
 			{
 				Tile tile = new Tile(tileNumber);
 
@@ -264,8 +250,83 @@ namespace SnakesAndLadders
 
 		private int GetHeight(int row, int tileHeight, int boardY)
 		{
-			return  (row * tileHeight);
+			return (row * tileHeight);
 		}
+
+
+		#endregion
+
+		#region Actions
+
+		private int Roll()
+		{
+			int rollVal = Die.RollDie();
+
+			ModifyPictureBoxImage(rollVal);
+
+			return rollVal;
+		}
+
+		private void ModifyPictureBoxImage(int value)
+		{
+			if (DieImages.TryGetValue(value, out Image image))
+			{
+				this.pictureBox2.Image = image;
+			}
+		}
+
+		private void DisplayOrder(IOrderedEnumerable<KeyValuePair<Player, int>> rollValues)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			Player firstPlayer = null;
+			foreach (KeyValuePair<Player, int> keyValue in rollValues)
+			{
+				if (firstPlayer == null)
+				{
+					firstPlayer = keyValue.Key;
+				}
+
+				sb.Append("Player: ");
+				sb.Append(keyValue.Key);
+				sb.Append(", Roll: ");
+				sb.Append(keyValue.Value);
+				sb.Append("\n");
+			}
+
+			sb.Append("\n");
+			sb.Append("\n");
+			IndicatePlayerToRoll(sb, firstPlayer);
+
+			lblTip.Text = sb.ToString();
+		}
+
+		private void IndicatePlayerToRoll(StringBuilder sb, Player player)
+		{
+			sb.Append(player);
+			sb.Append(" please roll!");
+		}
+
+		private void IndicateWinner(StringBuilder sb, Player player)
+		{
+			sb.Append(player);
+			sb.Append(" is the winner!");
+		}
+
+		private Dictionary<Player, int> RollDieForAllPlayers()
+		{
+			Dictionary<Player, int> playerDieRoll = new Dictionary<Player, int>();
+
+			foreach (Player p in Players)
+			{
+				int val = Die.RollDie();
+
+				playerDieRoll.Add(p, val);
+			}
+
+			return playerDieRoll;
+		}
+
 
 		private void MovePlayer(Player player, int rollVal)
 		{
@@ -293,13 +354,8 @@ namespace SnakesAndLadders
 			player.PlayerPawn.SetBounds(player.PlayerTile.X, player.PlayerTile.Y, player.PlayerPawn.Width, player.PlayerPawn.Height);
 		}
 
-		private void ModifyPictureBoxImage(int value)
-		{
-			if (DieImages.TryGetValue(value, out Image image))
-			{
-				this.pictureBox2.Image = image;
-			}
-		}
+
+		#endregion
 
 		#region Handlers
 
