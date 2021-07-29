@@ -334,24 +334,60 @@ namespace SnakesAndLadders
 			//check if they landed on a snake or ladder and adjust position if so
 			//check if they have won the game
 
-			SetPlayerNewBoardPosition(player, rollVal);
-
-			MovePlayerToNewBoardPosition(player);
-		}
-
-		private void SetPlayerNewBoardPosition(Player player, int rollVal)
-		{
 			int curTileNumber = player.PlayerTile.TileNumber;
 			curTileNumber += rollVal;
 
-			Tile newPlayerTile = BoardTiles.First(x => x.TileNumber == curTileNumber);
+			SetPlayerNewBoardPosition(player, curTileNumber);
+
+			CheckForSnakeOrLadder(player);
+
+			CheckForWinner(player);
+		}
+
+		private void SetPlayerNewBoardPosition(Player player, int newTileNumber)
+		{
+			if(newTileNumber > 100)
+				return;
+
+			Tile newPlayerTile = BoardTiles.First(x => x.TileNumber == newTileNumber);
 
 			player.PlayerTile = newPlayerTile;
+
+			MovePlayerToNewBoardPosition(player);
 		}
 
 		private void MovePlayerToNewBoardPosition(Player player)
 		{
 			player.PlayerPawn.SetBounds(player.PlayerTile.X, player.PlayerTile.Y, player.PlayerPawn.Width, player.PlayerPawn.Height);
+		}
+
+		private void CheckForSnakeOrLadder(Player player)
+		{
+			if(SnakeStartEndTile.ContainsKey(player.PlayerTile.TileNumber))
+			{
+				int newTileNumber = SnakeStartEndTile[player.PlayerTile.TileNumber];
+
+				SetPlayerNewBoardPosition(player, newTileNumber);
+
+			}
+			else if(LadderStartEndTile.ContainsKey(player.PlayerTile.TileNumber))
+			{
+				int newTileNumber = LadderStartEndTile[player.PlayerTile.TileNumber];
+
+				SetPlayerNewBoardPosition(player, newTileNumber);
+			}
+		}
+
+		private void CheckForWinner(Player player)
+		{
+			if(player.PlayerTile.TileNumber == 100)
+			{
+				StringBuilder sb = new StringBuilder();
+
+				IndicateWinner(sb, player);
+
+				btnRoll.Enabled = false;
+			}
 		}
 
 
